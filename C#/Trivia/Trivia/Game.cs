@@ -4,6 +4,14 @@ using System.Linq;
 
 namespace Trivia
 {
+    public enum CategoryType
+    {
+        Pop,
+        Science,
+        Sports,
+        Rock
+    }
+
     public class Game
     {
         private readonly List<string> _players = new List<string>();
@@ -101,40 +109,40 @@ namespace Trivia
 
         private void AskQuestion()
         {
-            if (CurrentCategory() == "Pop")
+            if (CurrentCategory() == CategoryType.Pop)
             {
                 Console.WriteLine(_popQuestions.First());
                 _popQuestions.RemoveFirst();
             }
-            if (CurrentCategory() == "Science")
+            if (CurrentCategory() == CategoryType.Science)
             {
                 Console.WriteLine(_scienceQuestions.First());
                 _scienceQuestions.RemoveFirst();
             }
-            if (CurrentCategory() == "Sports")
+            if (CurrentCategory() == CategoryType.Sports)
             {
                 Console.WriteLine(_sportsQuestions.First());
                 _sportsQuestions.RemoveFirst();
             }
-            if (CurrentCategory() == "Rock")
+            if (CurrentCategory() == CategoryType.Rock)
             {
                 Console.WriteLine(_rockQuestions.First());
                 _rockQuestions.RemoveFirst();
             }
         }
 
-        private string CurrentCategory()
+        private CategoryType CurrentCategory()
         {
-            if (_places[_currentPlayer] == 0) return "Pop";
-            if (_places[_currentPlayer] == 4) return "Pop";
-            if (_places[_currentPlayer] == 8) return "Pop";
-            if (_places[_currentPlayer] == 1) return "Science";
-            if (_places[_currentPlayer] == 5) return "Science";
-            if (_places[_currentPlayer] == 9) return "Science";
-            if (_places[_currentPlayer] == 2) return "Sports";
-            if (_places[_currentPlayer] == 6) return "Sports";
-            if (_places[_currentPlayer] == 10) return "Sports";
-            return "Rock";
+            if (_places[_currentPlayer] == 0) return CategoryType.Pop;
+            if (_places[_currentPlayer] == 4) return CategoryType.Pop;
+            if (_places[_currentPlayer] == 8) return CategoryType.Pop;
+            if (_places[_currentPlayer] == 1) return CategoryType.Science;
+            if (_places[_currentPlayer] == 5) return CategoryType.Science;
+            if (_places[_currentPlayer] == 9) return CategoryType.Science;
+            if (_places[_currentPlayer] == 2) return CategoryType.Sports;
+            if (_places[_currentPlayer] == 6) return CategoryType.Sports;
+            if (_places[_currentPlayer] == 10) return CategoryType.Sports;
+            return CategoryType.Rock;
         }
 
         public bool WasCorrectlyAnswered()
@@ -189,8 +197,7 @@ namespace Trivia
             Console.WriteLine(_players[_currentPlayer] + " was sent to the penalty box");
             _inPenaltyBox[_currentPlayer] = true;
 
-            _currentPlayer++;
-            if (_currentPlayer == _players.Count) _currentPlayer = 0;
+            SetNextPlayer();
             return true;
         }
 
