@@ -188,37 +188,20 @@ namespace Trivia
 
         public bool WasCorrectlyAnswered()
         {
-
-            if (inPenaltyBox[currentPlayer])
+            if (!IsCurrentUserInPenaltyBox() && !isGettingOutOfPenaltyBox)
             {
-                if (isGettingOutOfPenaltyBox)
-                {
-                    Console.WriteLine("Answer was correct!!!!");
-                    purses[currentPlayer]++;
-                    Console.WriteLine(CurrentPlayerName() + " now has " + purses[currentPlayer] + " Gold Coins.");
-
-                    var winner = DidPlayerWin();
-                    SetNextPlayer();
-
-                    return winner;
-                }
-                else
-                {
-                    SetNextPlayer();
-                    return true;
-                }
-            }
-            else
-            {
-                Console.WriteLine("Answer was corrent!!!!");
-                purses[currentPlayer]++;
-                Console.WriteLine(CurrentPlayerName() + " now has " + purses[currentPlayer] + " Gold Coins.");
-
-                var winner = DidPlayerWin();
                 SetNextPlayer();
-
-                return winner;
+                return true;
             }
+
+            Console.WriteLine("Answer was correct!!!!");
+            purses[currentPlayer]++;
+            Console.WriteLine(CurrentPlayerName() + " now has " + purses[currentPlayer] + " Gold Coins.");
+
+            var winner = DidPlayerWin();
+            SetNextPlayer();
+
+            return winner;
         }
 
         private void SetNextPlayer()
