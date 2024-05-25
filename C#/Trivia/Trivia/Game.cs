@@ -68,18 +68,13 @@ namespace Trivia
         public bool AddPlayer(string playerName)
         {
             players.Add(playerName);
-            places[GetPlayersCount()] = 0;
-            purses[GetPlayersCount()] = 0;
-            inPenaltyBox[GetPlayersCount()] = false;
+            places[players.Count] = 0;
+            purses[players.Count] = 0;
+            inPenaltyBox[players.Count] = false;
 
             Console.WriteLine(playerName + " was added");
             Console.WriteLine("They are player number " + players.Count);
             return true;
-        }
-
-        public int GetPlayersCount()
-        {
-            return players.Count;
         }
 
         public void Roll(int roll)
