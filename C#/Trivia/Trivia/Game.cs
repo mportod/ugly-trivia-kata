@@ -95,17 +95,15 @@ namespace Trivia
 
         private void HandlePenaltyBox(int roll)
         {
-            if (IsRollEven(roll))
+            isGettingOutOfPenaltyBox = IsRollEven(roll);
+            if (!isGettingOutOfPenaltyBox)
             {
-                isGettingOutOfPenaltyBox = true;
-                MovePlayerOutOfPenaltyBox(roll);
-                AskQuestion();
-            }
-            else
-            {
-                isGettingOutOfPenaltyBox = false;
                 Console.WriteLine(CurrentPlayerName() + " is not getting out of the penalty box");
+                return;
             }
+
+            MovePlayerOutOfPenaltyBox(roll);
+            AskQuestion();
         }
 
         private bool IsCurrentUserInPenaltyBox()
