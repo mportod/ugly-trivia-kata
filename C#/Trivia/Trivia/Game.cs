@@ -60,19 +60,19 @@ namespace Trivia
             return "Sports Question " + index;
         }
 
-        public bool Add(string playerName)
+        public bool AddPlayer(string playerName)
         {
             players.Add(playerName);
-            places[HowManyPlayers()] = 0;
-            purses[HowManyPlayers()] = 0;
-            inPenaltyBox[HowManyPlayers()] = false;
+            places[GetPlayersCount()] = 0;
+            purses[GetPlayersCount()] = 0;
+            inPenaltyBox[GetPlayersCount()] = false;
 
             Console.WriteLine(playerName + " was added");
             Console.WriteLine("They are player number " + players.Count);
             return true;
         }
 
-        public int HowManyPlayers()
+        public int GetPlayersCount()
         {
             return players.Count;
         }
