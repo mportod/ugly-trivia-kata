@@ -143,25 +143,52 @@ namespace Trivia
 
         private void AskQuestion()
         {
-            if (CurrentCategory() == CategoryType.Pop)
+            var category = CurrentCategory();
+            var question = GetQuestion(category);
+            Console.WriteLine(question);
+            RemoveQuestion(category);
+        }
+
+        private string GetQuestion(CategoryType category)
+        {
+            switch (category)
             {
-                Console.WriteLine(popQuestions.First());
-                popQuestions.RemoveFirst();
+                case CategoryType.Pop:
+                    return GetAndRemoveFirstQuestion(popQuestions);
+                case CategoryType.Science:
+                    return GetAndRemoveFirstQuestion(scienceQuestions);
+                case CategoryType.Sports:
+                    return GetAndRemoveFirstQuestion(sportsQuestions);
+                case CategoryType.Rock:
+                    return GetAndRemoveFirstQuestion(rockQuestions);
+                default:
+                    return string.Empty;
             }
-            if (CurrentCategory() == CategoryType.Science)
+        }
+
+        private string GetAndRemoveFirstQuestion(LinkedList<string> questionList)
+        {
+            var question = questionList.First();
+            questionList.RemoveFirst();
+            return question;
+        }
+
+        private void RemoveQuestion(CategoryType category)
+        {
+            switch (category)
             {
-                Console.WriteLine(scienceQuestions.First());
-                scienceQuestions.RemoveFirst();
-            }
-            if (CurrentCategory() == CategoryType.Sports)
-            {
-                Console.WriteLine(sportsQuestions.First());
-                sportsQuestions.RemoveFirst();
-            }
-            if (CurrentCategory() == CategoryType.Rock)
-            {
-                Console.WriteLine(rockQuestions.First());
-                rockQuestions.RemoveFirst();
+                case CategoryType.Pop:
+                    popQuestions.RemoveFirst();
+                    break;
+                case CategoryType.Science:
+                    scienceQuestions.RemoveFirst();
+                    break;
+                case CategoryType.Sports:
+                    sportsQuestions.RemoveFirst();
+                    break;
+                case CategoryType.Rock:
+                    rockQuestions.RemoveFirst();
+                    break;
             }
         }
 
