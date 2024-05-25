@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -143,16 +143,22 @@ namespace Trivia
 
         private CategoryType CurrentCategory()
         {
-            if (_places[_currentPlayer] == 0) return CategoryType.Pop;
-            if (_places[_currentPlayer] == 4) return CategoryType.Pop;
-            if (_places[_currentPlayer] == 8) return CategoryType.Pop;
-            if (_places[_currentPlayer] == 1) return CategoryType.Science;
-            if (_places[_currentPlayer] == 5) return CategoryType.Science;
-            if (_places[_currentPlayer] == 9) return CategoryType.Science;
-            if (_places[_currentPlayer] == 2) return CategoryType.Sports;
-            if (_places[_currentPlayer] == 6) return CategoryType.Sports;
-            if (_places[_currentPlayer] == 10) return CategoryType.Sports;
-            return CategoryType.Rock;
+            switch (places[currentPlayer])
+            {
+                case 0:
+                case 4:
+                case 8:
+                    return CategoryType.Pop;
+                case 1:
+                case 5:
+                case 9:
+                    return CategoryType.Science;
+                case 2:
+                case 6:
+                case 10:
+                    return CategoryType.Sports;
+                default:
+            }
         }
 
         public bool WasCorrectlyAnswered()
