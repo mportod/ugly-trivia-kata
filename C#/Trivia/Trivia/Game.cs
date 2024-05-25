@@ -31,7 +31,12 @@ namespace Trivia
 
         public Game()
         {
-            for (var i = 0; i < 50; i++)
+            CreateQuestions(50);
+        }
+
+        private void CreateQuestions(int numberOfQuestions)
+        {
+            for (var i = 0; i < numberOfQuestions; i++)
             {
                 popQuestions.AddLast(CreatePopQuestion(i));
                 scienceQuestions.AddLast(CreateScienceQuestion(i));
