@@ -33,9 +33,9 @@ namespace Trivia
         {
             for (var i = 0; i < 50; i++)
             {
-                _popQuestions.AddLast("Pop Question " + i);
-                _scienceQuestions.AddLast(("Science Question " + i));
-                _sportsQuestions.AddLast(("Sports Question " + i));
+                _popQuestions.AddLast(CreatePopQuestion(i));
+                _scienceQuestions.AddLast(CreateScienceQuestion(i));
+                _sportsQuestions.AddLast(CreateSportsQuestion(i));
                 _rockQuestions.AddLast(CreateRockQuestion(i));
             }
         }
@@ -43,6 +43,21 @@ namespace Trivia
         public string CreateRockQuestion(int index)
         {
             return "Rock Question " + index;
+        }
+
+        public string CreatePopQuestion(int index)
+        {
+            return "Pop Question " + index;
+        }
+
+        public string CreateScienceQuestion(int index)
+        {
+            return "Science Question " + index;
+        }
+
+        public string CreateSportsQuestion(int index)
+        {
+            return "Sports Question " + index;
         }
 
         public bool IsPlayable()
